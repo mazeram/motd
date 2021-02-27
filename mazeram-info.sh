@@ -40,7 +40,6 @@ NUM_PROCS=`ps aux | wc -l`
 OS_RELEASE=`hostnamectl | grep -E 'Operating System' | awk '{print $3" "$4" "$5" "$6}'`
 # Network
 IPADDRESS=`hostname --all-ip-addresses`
-VNSTAT_T=`vnstat | grep today | awk '{print $8" "$9}'`
 #Disk info
 DISK_USAGE=`df -h / | grep / | awk '{print $2}'`
 DISK_FREE=`df -h / | grep / | awk '{print $3}'`
