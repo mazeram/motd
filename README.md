@@ -1,4 +1,4 @@
 # motd
 Installation:
 
-`wget -O /etc/profile.d/motd.sh https://raw.githubusercontent.com/mazeram/motd/main/mazeram-info.sh`
+`bash <(wget -O - https://raw.githubusercontent.com/mazeram/motd/main/ins-ru.sh)`
