@@ -9,7 +9,7 @@
 
 `bash <(wget -O - https://raw.githubusercontent.com/mazeram/motd/main/ins-ru.sh)`
 
-Installation:
+**Installation:**
 
 To install motd with server resources displayed when logging in to SSH, use the command:
 
