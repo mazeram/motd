@@ -16,6 +16,6 @@ sudo rm /etc/profile.d/sshinfo.sh
 echo "Скрипт удалён"
 # runs this if option 3 is selected
 elif test $x -eq 3; then
-sudo nano /etc/profile.d/sshinfo.ssh
+sudo nano /etc/profile.d/sshinfo.sh
 exit
 fi
