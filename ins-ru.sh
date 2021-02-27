@@ -7,15 +7,15 @@ read x
 if test $x -eq 1; then
 echo
 echo "Создание конфигурации сервера"
-wget -O /etc/profile.d/sshinfo.sh https://raw.githubusercontent.com/mazeram/motd/main/mazeram-info.sh
+sudo wget -O /etc/profile.d/sshinfo.sh https://raw.githubusercontent.com/mazeram/motd/main/mazeram-info.sh
 echo "Скрипт установлен"
  
 # runs this if option 2 is selected
 elif test $x -eq 2; then
-rm /etc/profile.d/sshinfo.sh
+sudo rm /etc/profile.d/sshinfo.sh
 echo "Скрипт удалён"
 # runs this if option 3 is selected
 elif test $x -eq 3; then
-nano /etc/profile.d/sshinfo.ssh
+sudo nano /etc/profile.d/sshinfo.ssh
 exit
 fi
