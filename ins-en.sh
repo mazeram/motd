@@ -7,6 +7,7 @@ read x
 if test $x -eq 1; then
 echo
 echo "Creating a motd file"
+sudo cat /dev/null > /etc/motd
 sudo  wget -O /etc/profile.d/sshinfo.sh https://raw.githubusercontent.com/mazeram/motd/main/mazeram-info.sh
 echo "Motd installed"
  
