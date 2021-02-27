@@ -56,8 +56,8 @@ echo -e $tcLtG " - Disk          : $tcLBo$DISK_FREE / $DISK_USAGE"$tcRESET
 echo -e $tcLtG " - Users         : Currently `users | wc -w` user(s) logged on"
 echo -e $tcLtG " - Server Time   : `date`"
 echo -e $tcLtG " - System load   : $SYS_LOADS / $NUM_PROCS processes running"
-echo -e $tcLtG " - Memory used % : $MEMORY_USED"
-echo -e $tcLtG " - Swap used %   : $SWAP_USED"
+echo -e $tcLtG " - Memory used   : `free -m | grep Mem | awk '{print $3" / "$2}'` MiB ($MEMORY_USED%)"
+echo -e $tcLtG " - Swap used %   : `free -m | grep Swap | awk '{print $3" / "$2}'` MiB ($SWAP_USED%)"
 echo -e $tcDkG "==============================================================="
 echo -e $tcRESET ""
 #
