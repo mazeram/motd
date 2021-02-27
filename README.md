@@ -3,11 +3,11 @@
 
 Для curl:
 
-`[root@bill ~]# bash <(curl -s https://raw.githubusercontent.com/mazeram/motd/main/ins-ru.sh)`
+`[root@server ~]# bash <(curl -s https://raw.githubusercontent.com/mazeram/motd/main/ins-ru.sh)`
 
 Для wget:
 
-`[root@bill ~]# bash <(wget -O - https://raw.githubusercontent.com/mazeram/motd/main/ins-ru.sh)`
+`[root@server ~]# bash <(wget -O - https://raw.githubusercontent.com/mazeram/motd/main/ins-ru.sh)`
 
 **Installation:**
 
@@ -15,8 +15,8 @@ To install motd with server resources displayed when logging in to SSH, use the 
 
 Using curl:
 
-`[root@bill ~]# bash <(wget -O - https://raw.githubusercontent.com/mazeram/motd/main/ins-en.sh)`
+`[root@server ~]# bash <(wget -O - https://raw.githubusercontent.com/mazeram/motd/main/ins-en.sh)`
 
 Using wget:
 
-`[root@bill ~]# bash <(wget -O - https://raw.githubusercontent.com/mazeram/motd/main/ins-en.sh)`
+`[root@server ~]# bash <(wget -O - https://raw.githubusercontent.com/mazeram/motd/main/ins-en.sh)`
