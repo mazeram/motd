@@ -1,0 +1,66 @@
+#!/bin/bash
+
+NODO=$(hostname)
+IPS=$(hostname -I | tr ' ' '\n' | sed '/^$/d')
+CPU_LOAD=$(uptime | awk -F'load average:' '{print $2}' | xargs)
+CPU_CORES=$(nproc)
+RAM_USAGE=$(free -h | awk '/Mem:/ {print $3 "/" $2}')
+DISK_USAGE=$(df -h / | awk 'NR==2 {print $3 " / " $2 " (" $5 " used)"}')
+# procps on openSUSE Leap 16 has no 'uptime -p'
+UPTIME=$(uptime -p 2>/dev/null || awk '{printf "up %d days, %d hours, %d minutes", $1/86400, $1%86400/3600, $1%3600/60}' /proc/uptime)
+
+DOMAIN="vps28923.cubepath.net"
+
+COLOR_GREEN="\e[38;5;118m"
+COLOR_CYAN="\e[38;5;51m"
+COLOR_YELLOW="\e[1;33m"
+COLOR_BLUE="\e[1;34m"
+COLOR_RED="\e[1;31m"
+RESET="\e[0m"
+
+echo -e "${COLOR_RED}"
+echo "  ███╗   ███╗ █████╗ ███████╗███████╗██████╗  █████╗ ███╗   ███╗"
+echo "  ████╗ ████║██╔══██╗╚══███╔╝██╔════╝██╔══██╗██╔══██╗████╗ ████║"
+echo "  ██╔████╔██║███████║  ███╔╝ █████╗  ██████╔╝███████║██╔████╔██║"
+echo "  ██║╚██╔╝██║██╔══██║ ███╔╝  ██╔══╝  ██╔══██╗██╔══██║██║╚██╔╝██║"
+echo "  ██║ ╚═╝ ██║██║  ██║███████╗███████╗██║  ██║██║  ██║██║ ╚═╝ ██║"
+echo "  ╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝"
+echo -e "${RESET}"
+
+BOX_W=73
+INNER_W=$((BOX_W - 2))
+BORDER=$(printf '═%.0s' $(seq 1 $INNER_W))
+
+pline() {
+    # Añadido el escape $ a BOX_W para que funcione bien dentro del script generado
+    printf "${COLOR_CYAN}║${RESET} %b\e[${BOX_W}G${COLOR_CYAN}║${RESET}\n" "$1"
+}
+
+# Añadido \e[${BOX_W}G a todas las líneas horizontales para forzar el cierre perfecto
+echo -e "${COLOR_CYAN}╔${BORDER}\e[${BOX_W}G╗${RESET}"
+pline "                 🚀 CLOUD INFRASTRUCTURE VPS 🚀"
+echo -e "${COLOR_CYAN}╠${BORDER}\e[${BOX_W}G╣${RESET}"
+pline " 📡 Server:    ${COLOR_YELLOW}$NODO${RESET}"
+pline " 🌐 Domain:    ${COLOR_YELLOW}${DOMAIN}${RESET}"
+pline " 🔌 IPs:"
+IP_LIST=($IPS)
+IP_COUNT=${#IP_LIST[@]}
+for i in "${!IP_LIST[@]}"; do
+    if [ $i -eq $((IP_COUNT - 1)) ]; then
+        pline "    └─ ${COLOR_YELLOW}${IP_LIST[$i]}${RESET}"
+    else
+        pline "    ├─ ${COLOR_YELLOW}${IP_LIST[$i]}${RESET}"
+    fi
+done
+echo -e "${COLOR_CYAN}╠${BORDER}\e[${BOX_W}G╣${RESET}"
+pline " ⏱️  Uptime:     ${COLOR_YELLOW}$UPTIME${RESET}"
+pline " ⚙️  CPU Cores:  ${COLOR_YELLOW}$CPU_CORES cores${RESET}"
+pline " 🔥 CPU Load:   ${COLOR_YELLOW}$CPU_LOAD${RESET}"
+pline " 💾 RAM Usage:  ${COLOR_YELLOW}$RAM_USAGE${RESET}"
+pline " 💿 Disk Usage: ${COLOR_YELLOW}$DISK_USAGE${RESET}"
+echo -e "${COLOR_CYAN}╠${BORDER}\e[${BOX_W}G╣${RESET}"
+pline " 📜 Terms: ${COLOR_BLUE}https://mazeram.com/terms${RESET}"
+echo -e "${COLOR_CYAN}╠${BORDER}\e[${BOX_W}G╣${RESET}"
+pline " ${COLOR_GREEN}✨ Your infrastructure is ready. Happy coding! ✨${RESET}"
+echo -e "${COLOR_CYAN}╚${BORDER}\e[${BOX_W}G╝${RESET}"
+echo ""
